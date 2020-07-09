@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PhotoComponent } from './photo.component';
+import { StoreModule } from '@ngrx/store';
+
+import { photoModuleReducers } from './store';
+import { PhotoComponent } from './components/photo.component';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, StoreModule.forFeature('photo', photoModuleReducers)],
   declarations: [PhotoComponent],
   exports: [PhotoComponent],
 })
