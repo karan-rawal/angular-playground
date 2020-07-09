@@ -1,8 +1,22 @@
-<div>
-  Photos:
-  <div *ngFor="let photo of photos$ | async">
-    Id: {{ photo.id }} <br />
-    Name: {{ photo.title }} <br />
-    <img src="{{ photo.url }}" />
-  </div>
+<div *ngIf="isLoadingPhotos$ | async; else photosLoaded">
+  <div>Fetching photos.</div>
 </div>
+
+<ng-template #photosLoaded>
+  <div *ngIf="!!(photosError$ | async); else photosListing">
+    <div>
+      Unable to fetch photos.
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #photosListing>
+  <div>
+    Photos:
+    <div *ngFor="let photo of photos$ | async">
+      Id: {{ photo.id }} <br />
+      Name: {{ photo.title }} <br />
+      <img src="{{ photo.url }}" />
+    </div>
+  </div>
+</ng-template>

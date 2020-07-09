@@ -1,4 +1,4 @@
-import { map, catchError, mergeMap } from 'rxjs/operators';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import {
@@ -19,7 +19,7 @@ export class PhotoEffects {
   loadPhotos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ACTION_TYPE_LOAD_PHOTOS),
-      mergeMap(() => {
+      switchMap(() => {
         return this.photoService.getPhotos().pipe(
           map((photos) => new ActionLoadPhotosSuccess(photos)),
           catchError((e) => of(new ActionLoadPhotosFailure(e)))

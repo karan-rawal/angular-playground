@@ -20,14 +20,14 @@ export function photoReducer(state = initialPhotoState, action: PhotoActions) {
     }
     case ACTION_TYPE_LOAD_PHOTOS_SUCCESS: {
       const tempState = { ...state };
-      tempState.isLoadingPhotos = true;
+      tempState.isLoadingPhotos = false;
       tempState.photos = (action as ActionLoadPhotosSuccess).payload;
       tempState.photosError = null;
       return tempState;
     }
     case ACTION_TYPE_LOAD_PHOTOS_FAILURE: {
       const tempState = { ...state };
-      tempState.isLoadingPhotos = true;
+      tempState.isLoadingPhotos = false;
       tempState.photos = [];
       tempState.photosError = (action as ActionLoadPhotosFailure).payload;
       return tempState;
