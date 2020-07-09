@@ -1,4 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
+
 import { PhotoState } from './states';
 import { photoReducer } from './reducers';
 
